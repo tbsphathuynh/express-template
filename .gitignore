@@ -19,3 +19,4 @@ dummy
 dist
 logs
 google-cloud-key.json
+.DS_Store
