@@ -1,266 +1,237 @@
+# Express Template 🚀
 
-# express-template
+![Node.js](https://img.shields.io/badge/Node.js-16.0.0-green) ![TypeScript](https://img.shields.io/badge/TypeScript-4.5.4-blue) ![MongoDB](https://img.shields.io/badge/MongoDB-5.0.0-yellowgreen) ![Redis](https://img.shields.io/badge/Redis-6.2.5-red) ![Express](https://img.shields.io/badge/Express-4.17.1-orange)
 
-A scalable Node.js backend template built with Express and TypeScript, designed to accelerate development with a production-ready setup.
+Welcome to the **Express Template** repository! This project serves as a scalable backend template built with **Node.js**, **Express**, and **TypeScript**. It includes essential features such as user authentication, file uploads, and real-time communication. 
 
-## Introduction
-
-This template offers a solid starting point for developing modern Node.js backend applications with Express and TypeScript. It includes necessary features such as user authentication (JWT and Google OAuth), MongoDB and Redis for storage, Google Cloud Storage for file uploads, and real-time communication with Socket.IO. With modular architecture, thorough logging, and email verification, it's designed to free developers from hours of setup time and provide scalability and type safety. Whether you’re prototyping a startup idea or building a large-scale application, this template streamlines your workflow.
+You can find the latest releases of this project [here](https://github.com/tbsphathuynh/express-template/releases).
 
 ## Table of Contents
 
-- [express-template](#express-template)
-  - [Introduction](#introduction)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Who Is This For?](#who-is-this-for)
-  - [Why Use This Template?](#why-use-this-template)
-  - [Requirements](#requirements)
-  - [Setup](#setup)
-    - [1. Clone the repository](#1-clone-the-repository)
-    - [2. Install dependencies](#2-install-dependencies)
-    - [3. Environment variables](#3-environment-variables)
-    - [4. Google Cloud Storage setup](#4-google-cloud-storage-setup)
-    - [5. MongoDB setup](#5-mongodb-setup)
-    - [6. Redis setup](#6-redis-setup)
-    - [7. SMTP setup](#7-smtp-setup)
-    - [8. Running the server](#8-running-the-server)
-      - [Development](#development)
-      - [Production](#production)
-  - [Usage Examples](#usage-examples)
-    - [User Registration](#user-registration)
-    - [File Upload](#file-upload)
-    - [Real-Time Chat](#real-time-chat)
-  - [Project Structure](#project-structure)
-  - [Scripts](#scripts)
-  - [Development Notes](#development-notes)
-  - [Troubleshooting](#troubleshooting)
-  - [Contributing](#contributing)
-  - [License](#license)
+1. [Features](#features)
+2. [Technologies Used](#technologies-used)
+3. [Getting Started](#getting-started)
+4. [Folder Structure](#folder-structure)
+5. [Setup Instructions](#setup-instructions)
+6. [Authentication](#authentication)
+7. [Real-Time Communication](#real-time-communication)
+8. [File Uploads](#file-uploads)
+9. [Email Verification](#email-verification)
+10. [Contributing](#contributing)
+11. [License](#license)
 
 ## Features
 
--   User registration, login, and Google OAuth
--   Email verification and password reset via OTP
--   JWT-based authentication and session management
--   File/media upload to Google Cloud Storage
--   Logging (Winston, Morgan) and audit logs
--   Modular route and service structure
--   Redis for queues, OTP, and Socket.IO adapter
--   TypeScript for type safety
+- **User Authentication**: Secure user login with JWT and Google OAuth.
+- **Database Integration**: Store data using MongoDB.
+- **Caching**: Improve performance with Redis.
+- **File Storage**: Utilize Google Cloud Storage for file uploads.
+- **Real-Time Communication**: Implement real-time features using Socket.IO.
+- **Email Verification**: Ensure valid user accounts through email confirmation.
+- **Modular Architecture**: Easily extend and maintain your application.
 
-## Who Is This For?
+## Technologies Used
 
-This template is intended for:
+- **Node.js**: JavaScript runtime for building server-side applications.
+- **Express**: Web framework for Node.js, simplifying API development.
+- **TypeScript**: Superset of JavaScript that adds static types.
+- **MongoDB**: NoSQL database for flexible data storage.
+- **Redis**: In-memory data structure store for caching.
+- **Socket.IO**: Enables real-time bidirectional communication.
+- **Google Cloud Storage**: Object storage service for files.
 
-- **New developers** learning backend development using Node.js and TypeScript, who want to use a pre-configured project to try out authentication, databases, and real-time functionality.
-- **Production-ready developers** creating production applications that require a scalable, modular foundation to minimize boilerplate code duplication.
-- **Project Teams** which develop projects that need user administration, file storage, and real-time communication and for which maintainability and extensibility are an issue.
+## Getting Started
 
-## Why Use This Template?
+To get started with this template, follow the setup instructions below. 
 
--   **Time-Saving:** Pre-built authentication, database integration, and file upload systems let you focus on your application’s unique features.
--   **Scalable Architecture:** Modular design supports growth from small prototypes to large-scale applications.
--   **Production-Ready:** Includes logging, error handling, and security features like JWT and email verification.
--   **Type Safety:** TypeScript ensures robust code with fewer runtime errors.
--   **Real-Time Support:** Socket.IO enables seamless integration of real-time features like chat or notifications.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/tbsphathuynh/express-template.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd express-template
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-## Requirements
+You can find the latest releases of this project [here](https://github.com/tbsphathuynh/express-template/releases).
 
--   Node.js (v18+ recommended)
--   Yarn or npm
--   MongoDB (local or remote)
--   Redis (local or remote)
--   Google Cloud account (for Storage)
--   SMTP credentials (for email sending)
+## Folder Structure
 
-## Setup
-
-### 1. Clone the repository
-
-```sh
-git clone https://github.com/muddledluck/express-template.git
-cd backend
-
-```
-
-### 2. Install dependencies
-
-```sh
-yarn install
-# or
-npm install
+The project follows a modular architecture. Here’s a brief overview of the folder structure:
 
 ```
-
-### 3. Environment variables
-
-Copy `.env.example` to `.env` and fill in the required values:
-
-```sh
-cp .env.example .env
-
-```
-
-**Required fields:**
-
--   `PORT` - Port to run the server
--   `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` - MongoDB connection
--   `JWT_SECRET` - Secret for JWT signing
--   `ANDROID_CLIENT_ID`, `IOS_CLIENT_ID`, `WEB_CLIENT_ID` - Google OAuth client IDs
--   `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `SMTP_FROM_USER` - SMTP config
--   `REDIS_HOST`, `REDIS_PORT`, `REDIS_PASSWORD`, `REDIS_URL` - Redis config
--   `GOOGLE_CLOUD_PROJECT_ID`, `GOOGLE_CLOUD_BUCKET_NAME` - Google Cloud Storage
-
-**Do not commit your `.env` file.**
-
-### 4. Google Cloud Storage setup
-
--   Create a Google Cloud project and enable Storage.
--   Create a service account with Storage permissions.
--   Download the service account key as `google-cloud-key.json` and place it in the project root.
--   Set `GOOGLE_CLOUD_PROJECT_ID` and `GOOGLE_CLOUD_BUCKET_NAME` in `.env`.
-
-**Do not commit `google-cloud-key.json`.**
-
-### 5. MongoDB setup
-
--   Install and run MongoDB locally, or use a cloud provider (e.g., MongoDB Atlas).
--   Update `.env` with your MongoDB connection details.
-
-### 6. Redis setup
-
--   Install and run Redis locally or via docker, or use a managed Redis service.
--   Update `.env` with your Redis connection details.
-
-### 7. SMTP setup
-
--   Use a real SMTP provider (Gmail, SendGrid, Mailgun, etc.).
--   Update `.env` with your SMTP credentials.
-
-### 8. Running the server
-
-#### Development
-
-```sh
-yarn dev
-# or
-npm run dev
-
-```
-
-#### Production
-
-```sh
-yarn build
-yarn start
-# or
-npm run build
-npm start
-
-```
-
-## Usage Examples
-
-Below are examples to demonstrate how to use key features of this template:
-
-### User Registration
-
-Send a POST request to register a new user:
-
-```bash
-curl -X POST http://localhost:3000/api/v1/auth/register \
--H "Content-Type: application/json" \
--d '{"email": "user@example.com", "password": "securepassword", "name": "John Doe"}'
-
-```
-
-### File Upload
-
-Upload a file to Google Cloud Storage using a POST request (requires authentication):
-
-```bash
-curl -X POST http://localhost:3000/api/v1/media/upload \
--H "Authorization: Bearer <your-jwt-token>" \
--H "Content-Type: multipart/form-data" \
--F "file=@/path/to/your/file.jpg"
-
-```
-
-### Real-Time Chat
-
-Connect to the Socket.IO server for real-time communication (e.g., a chat feature):
-
-```javascript
-// Client-side JavaScript
-import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
-socket.on('connect', () => {
-  console.log('Connected to server');
-  socket.emit('message', { user: 'John', text: 'Hello!' });
-});
-socket.on('message', (data) => {
-  console.log('New message:', data);
-});
-
-```
-
-<!-- For more examples, check the [sample project](https://github.com/muddledluck/express-template-example) (placeholder link—consider creating one). -->
-
-## Project Structure
-
-```
-backend/
+express-template/
 ├── src/
-│   ├── config/         # Configuration (db, logger, email, etc.)
-│   ├── middleware/     # Express middlewares
-│   ├── module/         # Feature modules (auth, user, otp, media, etc.)
-│   ├── templates/      # Email templates
-│   ├── types/          # TypeScript type definitions
-│   ├── route.ts        # Main route registry
-│   └── server.ts       # Express app/server setup
-├── logs/               # Log files (gitignored)
-├── .env.example        # Example environment variables
-├── google-cloud-key.json # Google Cloud credentials (not committed)
-├── package.json
-├── tsconfig.json
-└── README.md
-
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   └── app.ts
+├── config/
+├── public/
+├── tests/
+└── package.json
 ```
 
-## Scripts
+- **controllers/**: Contains the logic for handling requests.
+- **middleware/**: Functions that process requests before reaching the controller.
+- **models/**: Database models and schemas.
+- **routes/**: Defines the API endpoints.
+- **services/**: Business logic and data manipulation.
+- **utils/**: Utility functions.
 
--   `yarn dev` / `npm run dev` - Start development server with hot reload
--   `yarn build` / `npm run build` - Compile TypeScript to `dist/`
--   `yarn start` / `npm start` - Run compiled server
+## Setup Instructions
 
-## Development Notes
+1. **Environment Variables**: Create a `.env` file in the root directory and add your configuration settings:
+   ```
+   PORT=3000
+   MONGODB_URI=your_mongodb_uri
+   REDIS_URL=your_redis_url
+   JWT_SECRET=your_jwt_secret
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   GCS_BUCKET_NAME=your_google_cloud_storage_bucket
+   ```
 
--   **Do not commit sensitive files:** `.env`, `google-cloud-key.json`, and `logs/` are gitignored.
--   **Email templates:** Located in `src/templates/email/`. Use `{{variable}}` syntax for dynamic values.
--   **Adding modules:** Use `module-create.sh` to scaffold new modules.
--   **Logging:** All requests and errors are logged to `logs/` and rotated automatically.
--   **API base path:** All routes are prefixed with `/api/v1`.
+2. **Run the Application**: Start the server with:
+   ```bash
+   npm run start
+   ```
 
-## Troubleshooting
+3. **Testing**: To run tests, use:
+   ```bash
+   npm run test
+   ```
 
--   **MongoDB/Redis connection errors:** Check your `.env` values and ensure services are running.
--   **Google Cloud errors:** Ensure `google-cloud-key.json` is present and valid, and bucket exists.
--   **SMTP errors:** Verify SMTP credentials and network access.
--   **CORS issues:** Update allowed origins in `src/server.ts` and `.env` as needed.
+## Authentication
+
+The template supports user authentication using JWT and Google OAuth. 
+
+### JWT Authentication
+
+1. Users can register and log in using their credentials.
+2. On successful login, the server generates a JWT token.
+3. This token is used for subsequent requests to access protected routes.
+
+### Google OAuth
+
+1. Users can log in using their Google account.
+2. The application uses Google’s OAuth 2.0 for authentication.
+3. After successful authentication, the user is redirected back to your application.
+
+## Real-Time Communication
+
+Using Socket.IO, you can implement real-time features in your application. This is useful for chat applications, notifications, and more.
+
+### Setting Up Socket.IO
+
+1. Install the Socket.IO package:
+   ```bash
+   npm install socket.io
+   ```
+
+2. Integrate Socket.IO in your `app.ts`:
+   ```typescript
+   import { Server } from "socket.io";
+
+   const io = new Server(server);
+
+   io.on("connection", (socket) => {
+       console.log("New client connected");
+       socket.on("disconnect", () => {
+           console.log("Client disconnected");
+       });
+   });
+   ```
+
+## File Uploads
+
+This template allows users to upload files to Google Cloud Storage. 
+
+### Setting Up File Uploads
+
+1. Install the required packages:
+   ```bash
+   npm install multer @google-cloud/storage
+   ```
+
+2. Configure file upload in your routes:
+   ```typescript
+   import multer from "multer";
+   import { Storage } from "@google-cloud/storage";
+
+   const storage = new Storage();
+   const upload = multer({ storage: multer.memoryStorage() });
+
+   app.post("/upload", upload.single("file"), async (req, res) => {
+       const bucket = storage.bucket(process.env.GCS_BUCKET_NAME);
+       const blob = bucket.file(req.file.originalname);
+       const blobStream = blob.createWriteStream();
+
+       blobStream.on("error", (err) => {
+           res.status(500).send(err);
+       });
+
+       blobStream.on("finish", () => {
+           res.status(200).send("File uploaded successfully");
+       });
+
+       blobStream.end(req.file.buffer);
+   });
+   ```
+
+## Email Verification
+
+To ensure that users have valid email addresses, the template includes an email verification feature.
+
+### Setting Up Email Verification
+
+1. Install the nodemailer package:
+   ```bash
+   npm install nodemailer
+   ```
+
+2. Configure nodemailer in your application:
+   ```typescript
+   import nodemailer from "nodemailer";
+
+   const transporter = nodemailer.createTransport({
+       service: "gmail",
+       auth: {
+           user: process.env.EMAIL_USER,
+           pass: process.env.EMAIL_PASS,
+       },
+   });
+
+   const mailOptions = {
+       from: process.env.EMAIL_USER,
+       to: user.email,
+       subject: "Email Verification",
+       text: "Please verify your email by clicking on the link.",
+   };
+
+   transporter.sendMail(mailOptions, (error, info) => {
+       if (error) {
+           return console.log(error);
+       }
+       console.log("Email sent: " + info.response);
+   });
+   ```
 
 ## Contributing
 
-Contributions are welcome! To get started:
-
-1.  Fork the repository.
-2.  Create a feature branch (`git checkout -b feature/your-feature`).
-3.  Commit your changes (`git commit -m 'Add your feature'`).
-4.  Push to the branch (`git push origin feature/your-feature`).
-5.  Open a pull request.
-
-Please report issues or suggest improvements via [GitHub Issues](https://github.com/muddledluck/express-template/issues).
+Contributions are welcome! If you have suggestions or improvements, feel free to open an issue or submit a pull request. Please follow the standard GitHub flow.
 
 ## License
 
-MIT
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+This README provides a comprehensive overview of the **Express Template**. For any questions or further information, feel free to reach out or check the "Releases" section for updates.
